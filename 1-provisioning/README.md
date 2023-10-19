@@ -452,7 +452,13 @@ sudo certbot certonly \
 sudo cp /etc/letsencrypt/live/al.studentdumbways.my.id/fullchain.pem ~/nginx/ssl
 sudo cp /etc/letsencrypt/live/al.studentdumbways.my.id/privkey.pem ~/nginx/ssl
 ```
-<img src="images/image03-13.png">
+<img src="images/image03-14.png">
+
+15. Lakukan pengecekan menggunakan browser
+```bash
+https://al.studentdumbways.my.id/auth
+```
+<img src="images/image03-15.png">
 
 
 [**Back**](../README.md)
