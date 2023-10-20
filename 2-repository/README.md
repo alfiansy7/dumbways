@@ -18,7 +18,7 @@ https://gitlab.com/projects/new
 - Connect repositories from: Repository by URL
 - Git repository URL: https://github.com/demo-dumbways/be-dumbmerch
 - Visibility Level: Private
-<img src="images/image01-04.png">
+<img src="images/image01-03.png">
 
 ## 2. Set up branches
 
