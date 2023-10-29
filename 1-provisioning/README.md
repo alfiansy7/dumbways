@@ -421,44 +421,11 @@ ansible all -m ping
 ```
 <img src="images/image03-09.png">
 
-10. Kemudian install packages certbot untuk kebutuhan SSL
+10. Lakukan pengecekan menggunakan browser
 ```bash
-sudo apt -y install snap
-sudo snap install --classic certbot
+https://al.studentdumbways.my.id
 ```
 <img src="images/image03-10.png">
-
-11. Buatkan SSL wildcard
-```bash
-sudo certbot certonly \
-  --agree-tos \
-  --email alfiansy@yandex.com \
-  --manual \
-  --preferred-challenges=dns \
-  -d al.studentdumbways.my.id \
-  -d *.al.studentdumbways.my.id \
-  --server https://acme-v02.api.letsencrypt.org/directory
-```
-<img src="images/image03-11.png">
-
-12. Lalu tambahkan DNS sesuai dengan TXT yang sudah di intruksikan
-<img src="images/image03-12.png">
-
-13. Berikut jika sudah berhasil
-<img src="images/image03-13.png">
-
-14. Copy file ssl nya ke home direktori
-```bash
-sudo cp /etc/letsencrypt/live/al.studentdumbways.my.id/fullchain.pem ~/nginx/ssl
-sudo cp /etc/letsencrypt/live/al.studentdumbways.my.id/privkey.pem ~/nginx/ssl
-```
-<img src="images/image03-14.png">
-
-15. Lakukan pengecekan menggunakan browser
-```bash
-https://al.studentdumbways.my.id/auth
-```
-<img src="images/image03-15.png">
 
 
 [**Back**](../README.md)
