@@ -161,11 +161,25 @@ git push origin production
 ```
 <img src="images/image03-02-02.png">
 
-3. Buat image docker dengan nama `zipian/be-dumbmerch:production`
+3. Membuat file `Dockerfile`
+```bash
+FROM golang:1.16-alpine AS builder
+WORKDIR /app
+COPY . .
+RUN CGO_ENABLED=0 go build -o myapp
+
+FROM gcr.io/distroless/base-debian10
+WORKDIR /app
+COPY --from=builder /app/.env /app/myapp .
+EXPOSE 5000
+CMD ["./myapp"]
+```
+
+4. Buat image docker dengan nama `zipian/be-dumbmerch:production`
 ```bash
 docker build -t zipian/be-dumbmerch:production .
 ```
-<img src="images/image03-02-03.png">
+<img src="images/image03-02-04.png">
 
 ## 4. Create Docker compose file
 ### 4.1. Staging
@@ -178,6 +192,7 @@ services:
     image: zipian/fe-dumbmerch:staging
     container_name: fe-dm-stg
     stdin_open: true
+    restart: always
     ports:
       - 3005:80
 
@@ -185,6 +200,7 @@ services:
     image: zipian/be-dumbmerch:staging
     container_name: be-dm-stg
     stdin_open: true
+    restart: always
     ports:
       - 5005:5000
 ```
@@ -205,6 +221,7 @@ services:
     image: zipian/fe-dumbmerch:production
     container_name: fe-dm-prod
     stdin_open: true
+    restart: always
     ports:
       - 3000:3000
 
@@ -212,6 +229,7 @@ services:
     image: zipian/be-dumbmerch:production
     container_name: be-dm-prod
     stdin_open: true
+    restart: always
     ports:
       - 5000:5000
 ```
